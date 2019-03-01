@@ -24,11 +24,10 @@ module DemoBankHttpClient
 
       doc = Nokogiri::HTML(response_with_login_form.body)
       authenticity_token =
-        doc
-        .xpath("/html/body/form/input[@name='authenticity_token'][@type='hidden']")
-        .first
-        .attribute("value")
-        .value
+        doc.xpath("/html/body/form/input[@name='authenticity_token'][@type='hidden']")
+           .first
+           .attribute("value")
+           .value
 
       @connection.headers["Cookie"] = response_with_login_form.headers["set-cookie"]
 
